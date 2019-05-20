@@ -30,12 +30,10 @@ class ImageResizr {
     if (!image) throw new Error('An Image must be specified');
     if (!size) throw new Error('Image size must be specified');
     const ext = this.getExtension(filename)
-    console.log('ext: '+ext)
     if(!this.isValidExtension(ext)) throw new Error('Image not supported');
-    console.log('pass')
     return new Promise((res, rej) => {
       this.sharp(Buffer.from(image.buffer))
-        .resize(size.w, size.h)
+        .resize(size.width, size.height)
         .toBuffer()
         .then(data => {
           return res({

@@ -39,11 +39,7 @@ class ImageFetcher {
     	return Promise.resolve(checkS3(this._S3, this._bucketName, fileName))
       	.then(metadata => {
         	if (!metadata) throw new Error('Invalid File');
-      	})
-      	.then(() => {
-      		console.log('image found on bucket')
-      		return Promise.resolve(getS3(this._S3, this._bucketName, fileName))
-      	});
+      	}).then(() => Promise.resolve(getS3(this._S3, this._bucketName, fileName)));
   	}
 }
 module.exports = ImageFetcher;
